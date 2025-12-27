@@ -11,8 +11,8 @@ import { authMiddleware, roleMiddleware } from '../middlewares/auth.middleware.j
 const router = Router();
 
 router.get('/', authMiddleware, listarProductos);
-router.post('/', authMiddleware, roleMiddleware(['ADMIN']), crearProducto);
-router.put('/:id', authMiddleware, actualizarProducto);
+router.post('/', authMiddleware, roleMiddleware(['ADMIN', 'ALMACEN', 'ALMACEN/VENDEDOR']), crearProducto);
+router.put('/:id', authMiddleware, roleMiddleware(['ADMIN', 'ALMACEN', 'ALMACEN/VENDEDOR']), actualizarProducto);
 router.delete('/:id', authMiddleware, eliminarProducto);
 
 export default router;
